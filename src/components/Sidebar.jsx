@@ -1,36 +1,56 @@
+import { useState } from "react";
 import Logo from "../assets/baka.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { house } from "@fortawesome/free-solid-svg-icons";
+import SidebarMenu from "./SidebarMenu";
+import { FaTimes as Close, FaBars as Open } from "react-icons/fa";
 
 /*
-***** Cosas para hacer:
-* Cambiar Logo.
-* Crear un componente para cada elemento de la <li>
-* Incluir icono por cada elemento.
-* Dark mode
+ ***** Cosas para hacer:
+ * Cambiar Logo.
+ * Dark mode
+ * Responsive
+ */
 
-*/
 const Sidebar = () => {
+   const [isOpen, setIsOpen] = useState(true);
+
+   let handleOpen = () => {
+      setIsOpen(!isOpen);
+   };
+
+   let burguerMenuProps =
+      "text-bold text-3xl p-3 cursor-pointer md:hidden hover:text-gray-100";
+
    return (
-      <div className="w-1/5 max-w-xs h-full bg-gray-300 text-gray-800 dark:bg-gray-800 dark:text-gray-200">
-         <div className="flex flex-col justify-evenly items-center h-screen box-shadow">
-            <div className="w-2/3 h-auto">
-               <img src={Logo} alt="Logo" />
+      <>
+         {isOpen && (
+            <div
+               className={`${burguerMenuProps} fixed left-6 top-3 z-10 bg-gray-800/60 hover:bg-gray-800 rounded-full`}
+            >
+               <Open onClick={handleOpen} />
             </div>
-            <div className="text-lg border-2 border-white p-6">
-               <ul>
-                  <li>
-                     <FontAwesomeIcon icon={house} />
-                     Home
-                  </li>
-                  <li>About</li>
-                  <li>Services</li>
-                  <li>Portfolio</li>
-                  <li>Contact</li>
-               </ul>
+         )}
+         <section
+            className={`w-[200px] md:w-1/5 h-screen relative ${
+               isOpen ? "left-[-200px]" : "left-0"
+            } md:left-0 md:static shadow-lg bg-gray-800
+            ease-in-out duration-300`}
+         >
+            {!isOpen && (
+               <div
+                  className={`${burguerMenuProps} absolute left-[9.5rem] top-2`}
+               >
+                  <Close onClick={handleOpen} />
+               </div>
+            )}
+
+            <div className="flex flex-col h-full md:mt-0 justify-evenly items-center">
+               <div className="w-36 h-auto  md:mt-0 md:w-2/3">
+                  <img src={Logo} alt="Logo" />
+               </div>
+               <SidebarMenu />
             </div>
-         </div>
-      </div>
+         </section>
+      </>
    );
 };
 

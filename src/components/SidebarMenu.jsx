@@ -28,7 +28,7 @@ const SidebarMenu = () => {
                return (
                   <li
                      key={label}
-                     className="flex py-2 border-b border-gray-300/60 hover:bg-gray-300 hover:text-gray-900 pr-2 duration-300"
+                     className="flex py-2 pr-2 border-b border-gray-300/60 hover:bg-gray-300 hover:text-gray-900 duration-300"
                   >
                      <Icons className="self-center mx-2" /> {label}
                   </li>

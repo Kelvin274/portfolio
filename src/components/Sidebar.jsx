@@ -7,7 +7,6 @@ import { FaTimes as Close, FaBars as Open } from "react-icons/fa";
  ***** Cosas para hacer:
  * Cambiar Logo.
  * Dark mode
- * Responsive
  */
 
 const Sidebar = () => {
@@ -18,25 +17,23 @@ const Sidebar = () => {
    };
 
    let burguerMenuProps =
-      "text-bold text-3xl p-3 cursor-pointer absolute md:hidden hover:text-gray-100";
+      "text-bold text-3xl bg-neutral-800/60 hover:text-gray-100 hover:bg-neutral-800 rounded-full";
 
    return (
       <section
-         className={`w-[200px] md:w-1/5 h-screen relative ${
-            isOpen ? "left-[-200px]" : "left-0"
-         } md:left-0 md:static shadow-lg bg-gray-800
-            ease-in-out duration-500`}
+         className={`w-[200px] md:w-[16rem] max-h-full z-50 absolute md:left-0 top-0 bottom-0 md:static
+            shadow-lg bg-neutral-800 ease-in-out duration-500 ${
+               isOpen ? "left-[-200px]" : "left-0"
+            }`}
       >
          <div
-            className={`${burguerMenuProps} left-[14rem] top-3 z-10 transition-opacity ${
-               isOpen ? "opacity-100 ease-in delay-500" : "opacity-0 ease-out"
-            }
-             bg-gray-800/60 hover:bg-gray-800 rounded-full`}
+            className={`${burguerMenuProps} md:hidden left-[13.5rem] top-3 z-10 p-3 absolute cursor-pointer`}
          >
-            <Open onClick={handleOpen} />
-         </div>
-         <div className={`${burguerMenuProps} left-[9.5rem] top-2`}>
-            <Close onClick={handleOpen} />
+            {isOpen ? (
+               <Open onClick={handleOpen} />
+            ) : (
+               <Close onClick={handleOpen} />
+            )}
          </div>
 
          <div className="flex flex-col h-full md:mt-0 justify-evenly items-center">

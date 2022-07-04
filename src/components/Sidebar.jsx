@@ -3,12 +3,6 @@ import Logo from "../assets/baka.jpg";
 import SidebarMenu from "./SidebarMenu";
 import { FaTimes as Close, FaBars as Open } from "react-icons/fa";
 
-/*
- ***** Cosas para hacer:
- * Cambiar Logo.
- * Dark mode
- */
-
 const Sidebar = () => {
    const [isOpen, setIsOpen] = useState(true);
 
